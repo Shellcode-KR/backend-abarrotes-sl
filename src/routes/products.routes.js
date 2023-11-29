@@ -50,7 +50,7 @@ router.patch('/:id',
     passport.authenticate('jwt', { session: false }),
     checkRoles('admin'),
     validatorHandler(getProductSchema, 'params'),
-    validatorHandler(updateProductSchema, 'body'),
+    validatorHandler(updateProductSchema, 'params'),
     async (req, res, next) => {
         try {
             const { id } = req.params
