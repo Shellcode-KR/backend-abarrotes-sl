@@ -58,7 +58,7 @@ router.post('/create-user', validatorHandler(createEmployeeSchema, 'body'), asyn
         const dataAdmin = {
             ...data,
             user: {
-                ...user,
+                ...data.user,
                 role: "admin"
             }
         }
