@@ -22,12 +22,13 @@ class ProductsService {
         return newProd
     }
     async delete(id) {
-        const producto = this.findOne(id)
-            (await producto).destroy();
+        const producto = await this.findOne(id);
+        await producto.destroy();
         return {
             message: "Producto eliminado"
         }
     }
+    
     async findOne(id) {
         const product = await models.Product.findByPk(id, {
             include: ['category', 'provider']
