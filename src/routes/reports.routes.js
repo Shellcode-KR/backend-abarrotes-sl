@@ -32,4 +32,29 @@ router.get('/day',
     }
 })
 
+// Cambié el método de 'get' a 'post' en las rutas
+router.post('/month',
+    passport.authenticate('jwt', { session: false }),
+    checkRoles('admin'),
+    validatorHandler(queryReportMonthSchema, 'body'), async (req, res, next) => {
+    try {
+        const sales = await service.perMonth(req.body);
+        res.status(200).json(sales);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.post('/day',
+    passport.authenticate('jwt', { session: false }),
+    checkRoles('admin'),
+    validatorHandler(queryReportDaySchema, 'body'), async (req, res, next) => {
+    try {
+        const sales = await service.perDay(req.body);
+        res.status(200).json(sales);
+    } catch (error) {
+        next(error);
+    }
+});
+
 module.exports = router

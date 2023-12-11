@@ -77,10 +77,10 @@ class Product extends Model {
     // para definir las asociaciones
     static associate(models) {
         this.belongsTo(models.Category, {
-            as: 'category'
+            as: 'category',
         })
         this.belongsTo(models.Provider, {
-            as: 'provider'
+            as: 'provider',
         })
 
     }
